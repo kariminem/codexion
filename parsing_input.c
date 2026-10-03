@@ -33,6 +33,22 @@ void display_global_controller(t_controller *controller)
     fflush(stdout);
 }
 
+int	verify_input(int argc, char **argv)
+{
+	int i = 0;
+	while (i < argc)
+	{
+		if (((strcmp("edf", argv[8]) != 0) && (strcmp("fifo", argv[8]) != 0)))
+		{
+			return (-1);
+		}
+		if (i != 9 && atoi(argv[i]) < 0)
+			return (-2);
+		i++;
+	}
+	return (4);
+}
+
 void parse_input(char **argv, t_controller *controller)
 {
     controller->number_of_coders = atoi(argv[1]);
@@ -100,8 +116,19 @@ void    display_coders(t_coder *coders, t_controller *controller)
 
 int main(int argc, char **argv)
 {
-    if (argc != 9)
-        return (-1);
+	if (verify_input(argc,argv) != 4 || argc != 9)
+	{
+		if (verify_input(argc, argv) == -1 )
+		{
+			printf("schedule input unknown, only 'edf' or 'fifo'");
+		}
+		if (verify_input(argc,argv) == -2)
+		{
+			printf("cant input negative numbers");
+		}
+		printf("INPUT ERROR\n");
+		return (-1);
+	}
     t_controller *controller;
     t_coder *coders;
     controller = malloc(sizeof(t_controller));
