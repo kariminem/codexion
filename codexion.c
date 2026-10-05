@@ -15,7 +15,8 @@ int main(int argc, char **argv)
         {
             parse_input(argv, controller);
             coders = init_coders(controller);
-            display_coders(coders, controller);
+            //display_coders(coders, controller);
+            init_threads(coders, controller);
         }
         free(controller);
         free(coders);

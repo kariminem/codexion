@@ -7,6 +7,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <pthread.h>
+
+
+typedef struct s_shared_context
+{
+    pthread_mutex_t mutex;
+    int counter;
+
+}t_shared_context;
 
 typedef struct s_controller
 {
@@ -41,7 +50,7 @@ typedef struct s_coder
 
 typedef struct s_dongle
 {
-    pthread_mutex_t has_mutex;
+    pthread_mutex_t mutex;
     long available_at;
 } t_dnogle;
 
@@ -52,4 +61,7 @@ void    display_coders(t_coder *coders, t_controller *controller);
 int	verify_input(int argc, char **argv);
 void parse_input(char **argv, t_controller *controller);
 int display_errors(int e);
+char **state_display();
+void    init_threads(t_coder *coders, t_controller *controller);
+void    *coder_routine(void *args);
 #endif

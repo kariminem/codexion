@@ -4,7 +4,9 @@ SRC =	time.c \
 		parsing_input.c \
 		coders.c \
 		utils.c \
-		codexion.c
+		codexion.c \
+		init_threads.c \
+		coder_routine.c
 
 CFLAGS = -Wall -Werror -Wextra
 

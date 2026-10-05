@@ -41,8 +41,9 @@ void parse_input(char **argv, t_controller *controller)
     controller->dongle_cooldown = atoi(argv[7]);
 
     controller->scheduler = (argv[8]);
-    loading(1);
-    display_global_controller(controller);
+
+    controller->number_of_dongles = controller->number_of_coders;
+
 }
 
 int display_errors(int e)
