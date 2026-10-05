@@ -1,7 +1,10 @@
 NAME = codexion
 CC = cc
 SRC =	time.c \
-		parsing_input.c
+		parsing_input.c \
+		coders.c \
+		utils.c \
+		codexion.c
 
 CFLAGS = -Wall -Werror -Wextra
 

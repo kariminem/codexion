@@ -18,6 +18,7 @@ typedef struct s_controller
     long    dongle_cooldown;
     int    number_of_compiles_required;
     int number_of_coders;
+    int number_of_dongles;
     char * scheduler;
 } t_controller;
 
@@ -38,4 +39,17 @@ typedef struct s_coder
     t_controller *controller;
 } t_coder;
 
+typedef struct s_dongle
+{
+    pthread_mutex_t has_mutex;
+    long available_at;
+} t_dnogle;
+
+t_coder*    init_coders(t_controller *controller);
+void loading(int wait_time);
+void display_global_controller(t_controller *controller);
+void    display_coders(t_coder *coders, t_controller *controller);
+int	verify_input(int argc, char **argv);
+void parse_input(char **argv, t_controller *controller);
+int display_errors(int e);
 #endif
